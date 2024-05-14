@@ -1,6 +1,8 @@
+import Form from "../../Components/TagsHtml/Forms/Form";
+
 const Login = () => {
     return (
-        <h1>Login</h1>
+        <Form/>
     );
 }
 
