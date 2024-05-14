@@ -1,5 +1,5 @@
 
-import NavBar from '../../Components/ComponentReact/NavBar/NavBar';
+import NavBar from '../../components/ComponentReact/NavBar/NavBar'
 import './Home.css';
 import logo from '../../Image/textelogo.png'
 import { Outlet } from 'react-router-dom';
