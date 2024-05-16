@@ -1,19 +1,15 @@
-import Button from "../Buttons/Button";
-import Input from "../Inputs/Input";
-
-const Form = () => {
-    const capturandoInput = (e) =>{
-        e.preventDefault();
-        console.log(e.target.elements.email.value)
-
-    }
+import './Form.css'
+const Form = ({onSubmit, children, text}) => {
 
     return (
-        <form  onSubmit={capturandoInput}>
+        <div className="Box-form">
             
-            <Input name='email' text='E-mail' type='text'placeholder='informe um e-mail valido' onChange={capturandoInput}  />
-            <Button type='submit' text='enviar'/>
-        </form>
+            <h1>{text}</h1>  
+
+            <form  onSubmit={onSubmit} >
+                {children}
+            </form>
+        </div>
     );
 }
 
