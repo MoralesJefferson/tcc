@@ -1,0 +1,29 @@
+.inicial{background-color:  rgba(0, 0, 255, 0);
+position: absolute;
+left: 50vw;
+width: 50vw;
+height: 75px;
+
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.lista{
+    width: 50%;
+    font-size: 18px;
+    display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+        
+}
+
+.lista > li >a {
+    color: #fff;
+    text-shadow: black 1px 1px;
+    font-weight: 600;
+    text-decoration: none;
+    
+}
+
+

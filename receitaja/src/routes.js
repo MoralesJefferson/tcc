@@ -1,17 +1,27 @@
-import {Routes, Route } from "react-router-dom";
-import Home from "./page/Home/Home";
-import PrescricaoMedica from "./page/PrescricaoMedica/PrescricaoMedica";
-import PrescricaoFarmacia from "./page/PrescricaoFarmacia/PrescricaoFarmacia";
-import Cadastro from "./page/Cadastro/Cadastro";
+import { Routes, Route } from "react-router-dom";
+import Home from './Pages/Home/Home'
+import Login from "./Pages/Login/Login";
+import Cadastro from "./Pages/Cadastro/Cadastro";
+import EsqueciSenha from "./Pages/EsqueciSenha/EsqueciSenha";
+import Sobre from "./Pages/Sobre/Sobre";
+import Vantagens from "./Pages/Vantagens/Vantagens";
+import Contato from "./Pages/Contato/Contato";
 
-function MinhasRotas(){
-    return(
+
+const MinhasRotas = () => {
+    return (
         <Routes>
-            <Route path="/" element={<Home/>} />
-            <Route path="/prescricaoMedica" element={<PrescricaoMedica/>} />
-            <Route path="/prescricaoFarmacia" element={<PrescricaoFarmacia/>} />
-            <Route path="/cadastro" element={<Cadastro/>} />
+           <Route path="/" element={<Home/>}>
+                <Route path="" element={<Login/>}/>
+                <Route path="cadastro" element={<Cadastro/>}/>
+                <Route path="esquecisenha" element={<EsqueciSenha/>}/>
+                <Route path="sobre" element={<Sobre/>}/>
+                <Route path="vantagens" element={<Vantagens/>}/>
+                <Route path="contato" element={<Contato/>}/>
+            </Route>
+           
         </Routes>
-    )
+    );
 }
+
 export default MinhasRotas;

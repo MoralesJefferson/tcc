@@ -1,0 +1,20 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+.Box-form{
+    
+    width: 90%;
+    height:90%;
+    text-shadow: black 1px 1px;    
+    
+    
+}
+
+.Box-form > h1{
+    color:#fff;
+    text-align: center;
+    
+}
+

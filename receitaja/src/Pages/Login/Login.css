@@ -1,0 +1,47 @@
+
+.Box-login{
+    background-color: #0c5742b6;
+    width: 50%;
+    min-height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    backdrop-filter: blur(6px);
+    border:2px solid rgba(255, 255, 255, 0.2);
+}
+.esqueceuSenha{
+    margin: 0px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -10px;
+    
+    
+    
+    
+}
+.esqueceuSenha > a{
+    text-decoration: none;
+    color: #fff;
+    text-shadow: black 1px 1px;
+    font-size: 14px;
+}
+a:hover{
+   
+    text-decoration: underline;
+}
+p{
+    text-align: center;
+    color: #fff;
+    text-shadow: black 1px 1px;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+p > a{
+    text-decoration: none;
+    color:#0c5742;
+    text-shadow: black 1px 1px;
+    font-size: 16px;
+}
