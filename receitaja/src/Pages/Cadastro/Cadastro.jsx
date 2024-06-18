@@ -1,4 +1,3 @@
-
 import './Cadastro.css'
 import Input from '../../Components/TagsHtml/Inputs/Input';
 import Button from '../../Components/TagsHtml/Buttons/Button';
@@ -12,10 +11,21 @@ const Cadastro = () => {
     const [isselected,setIsselected] = useState('medico');
     
     const {uf} = UseEstados();
+    
+    const onChangeRadio =(e)=>{
+        setIsselected(e.target.value)
+    }
     const tratandoFormularioCadastro = async (e)=>{
         e.preventDefault();
         
         const dados = {};
+
+        if(e.target.elements.nome.value){
+            dados.nome = e.target.elements.nome.value;
+        }else{
+            return alert("nome obrigatorio");
+        }   
+
         if(e.target.elements.email.value){
             dados.email = e.target.elements.email.value;
         }else{
@@ -23,6 +33,7 @@ const Cadastro = () => {
         }   
         
         dados.funcao = isselected;
+        
         if(e.target.elements.crm){
             if(e.target.elements.crm.value){
                 dados.crm = e.target.elements.crm.value;
@@ -54,16 +65,14 @@ const Cadastro = () => {
         }else{
             return alert("senha obrigatorio");
         }
-
-        const {data} = await Axios.post('http://localhost:3500/registro',dados) 
-        console.log(data);
-
-
-    }
-    const onChangeRadio =(e)=>{
-        setIsselected(e.target.value)
+        try {
+            const {data} = await Axios.post('http://localhost:3500/registro',dados) 
+            console.log(data);    
+        } catch (error) {
+            console.log(error.response.data)
+        }
         
-    }
+}
 
    
     
@@ -72,10 +81,11 @@ const Cadastro = () => {
         <div className="Box-cadastro">
 
         <Form onSubmit={tratandoFormularioCadastro} text='Cadastro'>
+            <Input name='nome' text='Nome' type='text'placeholder='informe seu nome'/>
             <Input name='email' text='E-mail' type='email'placeholder='informe um e-mail valido'/>
             <div className="typeRadio">
                 <Input 
-                    name='lembreDeMim' 
+                    name='medico' 
                     text='Medico' 
                     type='radio' 
                     custonClass='radio' 
@@ -84,13 +94,13 @@ const Cadastro = () => {
                     checked={isselected === 'medico'} 
                 />
                 <Input 
-                    name='lembreDeMim' 
+                    name='farmaceutico' 
                     text='Farmaceutico' 
                     type='radio' 
                     custonClass='radio' 
                     capturandoInput={onChangeRadio} 
-                    value={'farmacia'} 
-                    checked={isselected === 'farmacia'}
+                    value={'farmaceutico'} 
+                    checked={isselected === 'farmaceutico'}
                 />
             </div>
             <div className="Crm-crf">
