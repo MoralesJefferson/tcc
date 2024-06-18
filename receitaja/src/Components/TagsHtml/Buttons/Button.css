@@ -3,7 +3,11 @@
     margin: 10px 10px 0px 10px;
     
 }
+.Btn-cadastro{
+    margin: 10px 10px 20px 10px;
+    
 
+}
 .Box-button > button{
     width: 100%;
     padding: 10px;
@@ -13,4 +17,8 @@
     font-weight: 600;
     background-color: transparent;
     font-size: 16px;
+}
+.Box-button > button:hover{
+    cursor: pointer;
+    background-color: #0c5742;;
 }

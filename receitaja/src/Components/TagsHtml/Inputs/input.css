@@ -27,7 +27,7 @@
     color: #ffffffb4;
     
 }
-.checkbox{
+.checkbox , .radio{
     flex-direction: row-reverse;
     margin-left: 0px;
     color: #fff;
@@ -35,12 +35,19 @@
     
     
 }
-.checkbox > input{
+.radio > label{
+    font-size: 16px;
+    margin-left: 7px; 
     
 }
+
 .checkbox > label{
     font-size: 14px;
     font-weight:unset;
     margin-left: 5px; 
     
+}
+.crm , .crf{
+    width: 60%;
+
 }
