@@ -1,0 +1,30 @@
+.Box-cadastro{
+    background-color: #0c5742b6;
+    width: 50%;
+    min-height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    backdrop-filter: blur(6px);
+    border:2px solid rgba(255, 255, 255, 0.2);
+}
+
+.typeRadio{
+    margin: 0px 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: -10px;
+    font-weight: 600;
+}
+.Crm-crf{
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    
+
+}
+
