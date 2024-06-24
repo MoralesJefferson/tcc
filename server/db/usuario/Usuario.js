@@ -29,6 +29,7 @@ const buscaTodosUsuarios = async () =>{
     try {
         return await prisma.usuario.findMany({})
     } catch (error) {
+        console.log(error)
         return error
     }
 }

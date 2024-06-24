@@ -6,7 +6,7 @@ CREATE TABLE `usuario` (
     `crm` VARCHAR(20) NULL,
     `crf` VARCHAR(20) NULL,
     `administrador` BOOLEAN NULL DEFAULT false,
-    `senha` VARCHAR(6) NOT NULL,
+    `senha` VARCHAR(180) NOT NULL,
 
     UNIQUE INDEX `email`(`email`),
     PRIMARY KEY (`id`)

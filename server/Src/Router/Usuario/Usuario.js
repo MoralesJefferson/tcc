@@ -102,6 +102,15 @@ router.delete("/usuario/deleta/:id", async (req,res)=>{
     
 });
 
+router.get("/usuario/lista", async (req,res)=>{
+    try {
+        res.status(200).send("container funcionando com sucesso!!!")    
+    } catch (error) {
+        res.status(500).send("error!!", error)
+    }
+    
+})
+
 
 
 
@@ -121,9 +130,14 @@ router.delete("/usuario/deleta/:id", async (req,res)=>{
 
 //lista todos usuarios
 router.get("/busca",async (req,res)=>{
-    const listaUsuarios = await buscaTodosUsuarios()    
-    //console.log("chamou rota",listaUsuarios);
-    res.status(200).send(listaUsuarios)
+    try {
+        const listaUsuarios = await buscaTodosUsuarios()    
+        res.status(200).send(listaUsuarios)
+        
+    } catch (error) {
+        console.log("erro",error);
+
+    }
 });
 
 

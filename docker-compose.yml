@@ -1,0 +1,48 @@
+
+services:
+  mysql-tcc:
+    container_name: mysql-tcc
+    build: ./banco
+    ports:
+      - "3306:3306"
+    restart: always
+
+  server-tcc:
+    container_name: server-tcc
+    build: ./server
+    restart: always
+    ports:
+      - "5008:5008"
+    depends_on:
+      - mysql-tcc
+    env_file:
+      - ./server/.env
+    volumes:
+      - mysql-tcc-volume:/data/db
+  
+  front-tcc:
+    container_name: front-tcc
+    build: ./receitaja
+    depends_on:
+      - server-tcc
+    env_file:
+      - ./server/.env
+    volumes:
+      - front-volume:/var/www/html
+  
+  nginx:
+    container_name: nginx-tcc
+    build: ./nginx
+    ports:
+      - "80:80"
+    volumes:
+      - front-volume:/var/www/html
+    depends_on:
+      - mysql-tcc
+      - server-tcc
+      - front-tcc
+
+volumes:
+  mysql-tcc-volume:
+  front-volume:
+  

@@ -66,7 +66,7 @@ const Cadastro = () => {
             return alert("senha obrigatorio");
         }
         try {
-            const {data} = await Axios.post('http://localhost:3600/usuario/registro',dados) 
+            const {data} = await Axios.post('http://localhost:5008/usuario/registro',dados) 
             console.log(data);    
         } catch (error) {
             console.log(error.response.data)
