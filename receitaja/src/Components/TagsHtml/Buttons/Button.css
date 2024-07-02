@@ -20,5 +20,15 @@
 }
 .Box-button > button:hover{
     cursor: pointer;
-    background-color: #0c5742;;
+    background-color: #0c5742;
 }
+.prescricao-medicamento{
+    width: 20%;
+    display:flex;
+    flex-direction: row;
+}
+.prescricao-medicamento> button:hover{
+    cursor: pointer;
+    background-color: #0c574248;
+}
+

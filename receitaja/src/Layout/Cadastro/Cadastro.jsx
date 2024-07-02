@@ -7,9 +7,11 @@ import Axios from 'axios';
 import { useState } from 'react';
 
 import UseEstados from '../../Components/ComponentReact/Hooks/UseEstados/UseEstados';
+import { useNavigate } from 'react-router-dom';
+
 const Cadastro = () => {
     const [isselected,setIsselected] = useState('medico');
-    
+    const navigate = useNavigate()
     const {uf} = UseEstados();
     
     const onChangeRadio =(e)=>{
@@ -67,7 +69,7 @@ const Cadastro = () => {
         }
         try {
             const {data} = await Axios.post('http://localhost:5008/usuario/registro',dados) 
-            console.log(data);    
+            navigate('/')  
         } catch (error) {
             console.log(error.response.data)
         }

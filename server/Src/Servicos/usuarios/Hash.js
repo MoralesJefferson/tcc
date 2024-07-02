@@ -1,12 +1,20 @@
-const {genSalt, compare ,hash} =require('bcrypt')
+const {genSalt, compareSync ,hashSync} =require('bcrypt')
 
 const geraHash = async(senha)=>{
-    const salt = await genSalt(8);
-    return await hash(senha,salt);
+   try {
+        const salt = await genSalt(8);
+        return hashSync(senha,salt);
+   } catch (error) {
+        return error
+   } 
 }
 
 const comparaHash=async(senha , senhaHash)=>{
-    return await bcrypt.compare(senha,senhaHash);
+    try {
+        return compareSync(senha,senhaHash);    
+    } catch (error) {
+        return error
+    }
 }
 
 

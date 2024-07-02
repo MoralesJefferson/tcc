@@ -1,8 +1,8 @@
 import './Form.css'
-const Form = ({onSubmit, children, text}) => {
+const Form = ({onSubmit, children, text,custonClass}) => {
 
     return (
-        <div className="Box-form">
+        <div className={`${"Box-form"} ${[custonClass]}`}>
             
             <h1>{text}</h1>  
 

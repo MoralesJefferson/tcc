@@ -51,3 +51,19 @@
     width: 60%;
 
 }
+.input-prescreve > label {
+    color: black; 
+    text-shadow:none;
+}
+.input-prescreve > input {
+    background-color: transparent; 
+    color: black; 
+    border-color: black; 
+    width: 100%;
+}
+.input-prescreve > input::placeholder{
+    color: rgba(0, 0, 0, 0.315);
+    text-shadow:none;
+}
+
+

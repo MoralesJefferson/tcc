@@ -1,0 +1,39 @@
+.receita {
+    width: 90%;
+    border-radius: 10px;
+    margin: auto;
+    border: solid black 1px;    
+    text-align: center; /* Centraliza conteúdo textualmente */
+    padding-bottom: 10px;
+}
+
+.medicamento-campos {
+    margin-bottom: 15px;
+}
+
+.botao-linha {
+    display: flex;
+    justify-content: center; /* Centraliza o botão horizontalmente */
+    margin-bottom: 15px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.button-styled {
+    display: inline-block;
+    padding: 10px 20px; /* Ajuste o espaçamento interno conforme necessário */
+    background-color: #0c57426c;
+    color: white;
+    border: 2px solid #0c5742;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button-styled:hover {
+    background-color: #0c5742dc;
+    border-color: #0c5742c4;
+}

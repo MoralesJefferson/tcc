@@ -4,15 +4,38 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = env("DATABASE_URL")
+  url      = "mysql://root:123456@localhost:3306/tcc?schema=public"
 }
 
 model usuario {
-  id            Int      @id @default(autoincrement())
-  nome          String   @db.VarChar(180)
-  email         String   @unique(map: "email") @db.VarChar(180)
-  crm           String?  @db.VarChar(20)
-  crf           String?  @db.VarChar(20)
-  administrador Boolean? @default(false)
-  senha         String   @db.VarChar(180)
+  id            Int           @id @default(autoincrement())
+  nome          String        @db.VarChar(180)
+  email         String        @unique(map: "email") @db.VarChar(180)
+  crm           String?       @db.VarChar(20)
+  crf           String?       @db.VarChar(20)
+  administrador Boolean?      @default(false)
+  senha         String        @db.VarChar(180)
+  Prescricoes   Prescricoes[]
+}
+
+model Medicamentos {
+  id               Int         @id @default(autoincrement())
+  id_prescricao    Int
+  nome_medicamento String      @db.VarChar(255)
+  forma_usar       String?     @db.Text
+  Prescricoes      Prescricoes @relation(fields: [id_prescricao], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Medicamentos_ibfk_1")
+
+  @@index([id_prescricao], map: "id_prescricao")
+}
+
+model Prescricoes {
+  id                    Int            @id @default(autoincrement())
+  id_medico             Int
+  data_hora_prescricao  DateTime       @db.DateTime(0)
+  data_hora_dispensacao DateTime?      @db.DateTime(0)
+  status_prescricao     String         @db.VarChar(20)
+  Medicamentos          Medicamentos[]
+  usuario               usuario        @relation(fields: [id_medico], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "Prescricoes_ibfk_1")
+
+  @@index([id_medico], map: "id_medico")
 }

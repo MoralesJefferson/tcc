@@ -1,19 +1,40 @@
 import './Login.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import Button from "../../Components/TagsHtml/Buttons/Button";
 import Form from "../../Components/TagsHtml/Forms/Form";
 import Input from "../../Components/TagsHtml/Inputs/Input";
+import { setTokenUser } from '../../Auth/Auth';
+import Axios  from 'axios';
 
 const Login = () => {
-    const tratandoFormulario =(e)=>{
-        e.preventDefault()
-        console.log(e.target.elements.email.value)
+    const navigate = useNavigate()
+    const logando  = async (e) => {
+    e.preventDefault()
+    const dados = {};
+    if(e.target.elements.email.value){
+        dados.email = e.target.elements.email.value;
+    }else{
+        return alert("email obrigatorio");
     }
+    if(e.target.elements.password.value){
+        dados.senha = e.target.elements.password.value; 
+    }else{
+        return alert("senha obrigatorio");
+    } 
+    try {
+        const {data} = await Axios.post('http://localhost:5008/login',dados) 
+        setTokenUser(data, navigate)
+
+    } catch (error) {
+            console.log(error.response.data)
+    }   
+    }
+    
     return (
        <div className="Box-login">
 
-            <Form onSubmit={tratandoFormulario} text='login'>
+            <Form onSubmit={logando} text='login'>
                 <Input name='email' text='E-mail' type='email'placeholder='informe um e-mail valido'/>
                 <Input name='password' text='Password' type='password'placeholder='informe sua senha'/>
                 
