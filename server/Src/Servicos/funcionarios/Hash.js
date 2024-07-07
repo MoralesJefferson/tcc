@@ -13,6 +13,7 @@ const comparaHash=async(senha , senhaHash)=>{
     try {
         return compareSync(senha,senhaHash);    
     } catch (error) {
+        console.log(error)
         return error
     }
 }
