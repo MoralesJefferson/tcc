@@ -9,8 +9,10 @@ import Contato from "./Layout/Contato/Contato";
 import HomePage from "./Pages/HomePage/HomePage";
 import Perfil from "./Layout/Perfil/Perfil";
 import Prescrever from "./Layout/Prescrever/Prescrever";
-import ConsultaPrescricao from "./Layout/ConsultaPrescricao/ConsultaPrescricao";
+import Medicamentos from "./Layout/Medicamentos/Medicamentos";
 import PrivateRoutess from "./Private/PrivateRoutess";
+import Prescricoes from "./Layout/Prescricoes/Prescricoes";
+
 
 
 
@@ -26,11 +28,13 @@ const MinhasRotas = () => {
                 <Route path="contato" element={<Contato/>}/>
                 
             </Route>
-
-            <Route path="/homepage" element={<PrivateRoutess><HomePage /></PrivateRoutess>}>
+            
+            
+            <Route path="/homepage" element={<PrivateRoutess><HomePage/></PrivateRoutess>}>
                     <Route path="perfil" element={<PrivateRoutess><Perfil /></PrivateRoutess>} />
-                    <Route path="prescrever" element={<PrivateRoutess><Prescrever /></PrivateRoutess>} />
-                    <Route path="consultaprescricao" element={<PrivateRoutess><ConsultaPrescricao /></PrivateRoutess>} />
+                    <Route path="prescricoes" element={<PrivateRoutess><Prescricoes/></PrivateRoutess>}/>
+                    <Route path="prescrever" element={<PrivateRoutess><Prescrever /></PrivateRoutess>}/>
+                    <Route path="medicamentos" element={<PrivateRoutess><Medicamentos/></PrivateRoutess>} />
             </Route>
             
            

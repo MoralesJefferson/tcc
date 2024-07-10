@@ -8,30 +8,32 @@ datasource db {
 }
 
 model funcionarios {
-  pessoa_id        Int     @id
-  email            String  @unique(map: "email") @db.VarChar(100)
-  senha            String  @db.VarChar(100)
-  administrador    Boolean
-  funcao_id        Int
-  reg_profissional String  @db.VarChar(20)
-  pessoas          pessoas @relation(fields: [pessoa_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "funcionarios_ibfk_1")
-  funcoes          funcoes @relation(fields: [funcao_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "funcionarios_ibfk_2")
+  pessoa_id                   Int                           @id
+  funcao_id                   Int
+  reg_profissional            String                        @db.VarChar(20)
+  email                       String                        @unique(map: "email") @db.VarChar(100)
+  senha                       String                        @db.VarChar(100)
+  administrador               Boolean
+  pessoas                     pessoas                       @relation(fields: [pessoa_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "funcionarios_ibfk_1")
+  funcoes                     funcoes                       @relation(fields: [funcao_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "funcionarios_ibfk_2")
+  prescricoes                 prescricoes[]
+  status_prescricao_historico status_prescricao_historico[]
 
   @@index([funcao_id], map: "funcao_id")
-  @@index([pessoa_id], map: "pessoa_id")
 }
 
 model pacientes {
-  pessoa_id  Int     @id
-  cartao_sus String? @db.VarChar(25)
-  pessoas    pessoas @relation(fields: [pessoa_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "pacientes_ibfk_1")
+  pessoa_id   Int           @id
+  cartao_sus  String?       @db.VarChar(25)
+  pessoas     pessoas       @relation(fields: [pessoa_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "pacientes_ibfk_1")
+  prescricoes prescricoes[]
 }
 
 model pessoas {
   id            Int           @id @default(autoincrement())
+  nm_pessoa     String        @db.VarChar(100)
   cpf           String?       @db.VarChar(11)
   dt_nascimento DateTime?     @db.Date
-  nm_pessoa     String        @db.VarChar(100)
   funcionarios  funcionarios?
   pacientes     pacientes?
 }
@@ -40,4 +42,73 @@ model funcoes {
   id           Int            @id @default(autoincrement())
   nm_funcao    String         @unique(map: "nm_funcao") @db.VarChar(20)
   funcionarios funcionarios[]
+}
+
+model estoques {
+  farmacia_id    Int
+  medicamento_id Int
+  quantidade     Int
+  farmacias      farmacias    @relation(fields: [farmacia_id], references: [farmacia_id], onDelete: NoAction, onUpdate: NoAction, map: "estoques_ibfk_1")
+  medicamentos   medicamentos @relation(fields: [medicamento_id], references: [medicamento_id], onDelete: NoAction, onUpdate: NoAction, map: "estoques_ibfk_2")
+
+  @@id([farmacia_id, medicamento_id])
+  @@index([medicamento_id], map: "medicamento_id")
+}
+
+model farmacias {
+  farmacia_id Int        @id @default(autoincrement())
+  nome        String     @db.VarChar(100)
+  endereco    String?    @db.VarChar(200)
+  telefone    String?    @db.VarChar(15)
+  estoques    estoques[]
+}
+
+model medicamentos {
+  medicamento_id          Int                       @id @default(autoincrement())
+  nome                    String                    @db.VarChar(100)
+  descricao               String?                   @db.Text
+  fabricante              String?                   @db.VarChar(100)
+  estoques                estoques[]
+  prescricao_medicamentos prescricao_medicamentos[]
+}
+
+model prescricao_medicamentos {
+  prescricao_medicamento_id Int          @id @default(autoincrement())
+  prescricao_id             Int
+  medicamento_id            Int
+  quantidade                Int
+  forma_uso                 String       @db.Text
+  prescricoes               prescricoes  @relation(fields: [prescricao_id], references: [prescricao_id], onDelete: NoAction, onUpdate: NoAction, map: "prescricao_medicamentos_ibfk_1")
+  medicamentos              medicamentos @relation(fields: [medicamento_id], references: [medicamento_id], onDelete: NoAction, onUpdate: NoAction, map: "prescricao_medicamentos_ibfk_2")
+
+  @@index([medicamento_id], map: "medicamento_id")
+  @@index([prescricao_id], map: "prescricao_id")
+}
+
+model prescricoes {
+  prescricao_id               Int                           @id @default(autoincrement())
+  funcionario_id              Int
+  paciente_id                 Int
+  data_prescricao             DateTime                      @db.DateTime(0)
+  status                      String                        @db.VarChar(80)
+  prescricao_medicamentos     prescricao_medicamentos[]
+  funcionarios                funcionarios                  @relation(fields: [funcionario_id], references: [pessoa_id], onDelete: NoAction, onUpdate: NoAction, map: "prescricoes_ibfk_1")
+  pacientes                   pacientes                     @relation(fields: [paciente_id], references: [pessoa_id], onDelete: NoAction, onUpdate: NoAction, map: "prescricoes_ibfk_2")
+  status_prescricao_historico status_prescricao_historico[]
+
+  @@index([funcionario_id], map: "funcionario_id")
+  @@index([paciente_id], map: "paciente_id")
+}
+
+model status_prescricao_historico {
+  id             Int          @id @default(autoincrement())
+  prescricao_id  Int
+  funcionario_id Int
+  status         String       @db.VarChar(80)
+  data_alteracao DateTime     @db.DateTime(0)
+  prescricoes    prescricoes  @relation(fields: [prescricao_id], references: [prescricao_id], onDelete: NoAction, onUpdate: NoAction, map: "status_prescricao_historico_ibfk_1")
+  funcionarios   funcionarios @relation(fields: [funcionario_id], references: [pessoa_id], onDelete: NoAction, onUpdate: NoAction, map: "status_prescricao_historico_ibfk_2")
+
+  @@index([funcionario_id], map: "funcionario_id")
+  @@index([prescricao_id], map: "prescricao_id")
 }

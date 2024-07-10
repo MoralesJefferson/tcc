@@ -1,0 +1,16 @@
+const prisma = require('../Prisma');
+const registraEstoque = async (data) =>{
+    try {
+        return await prisma.estoques.create({
+            data:data
+        })
+
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+}
+module.exports ={
+    registraEstoque
+    
+}

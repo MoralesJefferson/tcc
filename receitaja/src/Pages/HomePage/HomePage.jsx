@@ -19,16 +19,17 @@ const HomePage = () => {
             </header>
             <nav >
                 <Link to='/homepage'>Inicio</Link>
+                <Link to='/homepage/prescricoes'>Lista Prescrições</Link>
                 <Link to='/homepage/perfil'>Perfil</Link>
                 <Link to='/homepage/prescrever'>Prescrever</Link>
-                <Link to='/homepage/consultaprescricao'>Consultar Prescrição</Link>
+                <Link to='/homepage/medicamentos'>Medicamentos</Link>
                 <Button type='button' text='Sair' onclick={sair}/>
             </nav>
             <section className='box' >
                 <div className='box-intern'>
-                    <Outlet/>
+                    <Outlet/>         
                 </div>
-
+                      
             </section>
         </div>
     );

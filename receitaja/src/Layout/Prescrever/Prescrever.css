@@ -1,39 +1,63 @@
-.receita {
-    width: 90%;
-    border-radius: 10px;
-    margin: auto;
-    border: solid black 1px;    
-    text-align: center; /* Centraliza conteúdo textualmente */
-    padding-bottom: 10px;
-}
 
-.medicamento-campos {
-    margin-bottom: 15px;
-}
-
-.botao-linha {
-    display: flex;
-    justify-content: center; /* Centraliza o botão horizontalmente */
-    margin-bottom: 15px;
-}
-
-h1 {
-    text-align: center;
-}
-
-.button-styled {
-    display: inline-block;
-    padding: 10px 20px; /* Ajuste o espaçamento interno conforme necessário */
-    background-color: #0c57426c;
-    color: white;
-    border: 2px solid #0c5742;
+.receita{
+    padding: 20px;
+    border: solid 1px green;
     border-radius: 8px;
+    width: 700px;
+    margin: auto;
+    background-color: #CEE2D0;
+}
+.customiza .form-label{
+    color: rgba(0, 0, 0, 0.459);
+
+}
+.receita h4{
     text-align: center;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
 }
 
-.button-styled:hover {
-    background-color: #0c5742dc;
-    border-color: #0c5742c4;
+
+
+.testando_estilo{
+    padding: 0px;
+    margin: 0px;
+    max-width: 400px;
+    background-color: white;
+}
+.testando_estilo .MuiInputBase-root {
+    font-size:1rem; 
+    border: 2px solid #000; 
+    height: 39px;
+  }
+.testando_estilo .MuiInputBase-input::placeholder {
+    font-size: 14px; 
+    color: rgb(10, 10, 10); 
+}
+
+.testando_estilo .MuiAutocomplete-root {
+    padding: 0;
+}
+
+.testando_estilo .MuiInputBase-root {
+    padding: 0;
+    font-size: 16px; 
+    border: 1px solid #ccc;
+    border-radius: 4px; 
+}
+
+.testando_estilo .MuiInputBase-input {
+    padding: 8px; 
+}
+.testando_estilo .MuiOutlinedInput-notchedOutline {
+    border: none; 
+}
+
+.testando_estilo .MuiAutocomplete-popupIndicator {
+    display: none; 
+}
+.testando_estilo .MuiAutocomplete-clearIndicator {
+    display: none; 
+}
+
+.testando_estilo .MuiInputLabel-root {
+    display: none; 
 }

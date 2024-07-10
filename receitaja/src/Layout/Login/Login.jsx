@@ -23,7 +23,7 @@ const Login = () => {
         return alert("senha obrigatorio");
     } 
     try {
-        const {data} = await Axios.post('http://localhost:5008/login',dados) 
+        const {data} = await Axios.post('http://localhost:5008/funcionario/login',dados) 
         setTokenUser(data, navigate)
 
     } catch (error) {

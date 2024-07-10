@@ -71,6 +71,11 @@ const buscaFuncionarioEmail = async (e_mail) =>{
 const buscaTodosFuncionarios = async () =>{
     try {
         const funcionarios = await prisma.pessoas.findMany({
+            where: {
+                funcionarios: {
+                  isNot: null
+                }
+            },
             include:{
                 funcionarios:{
                     select:{
@@ -97,7 +102,7 @@ const buscaTodosFuncionarios = async () =>{
 const buscaFuncionarioId = async (id) =>{
     return await prisma.pessoas.findFirst({
         where:{
-            id:id
+            id:id,
         },
         include:{
             funcionarios:{

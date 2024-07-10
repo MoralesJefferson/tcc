@@ -1,0 +1,8 @@
+.medicamento_box{
+    padding: 20px;
+    border: solid 1px green;
+    border-radius: 8px;
+    width: 700px;
+    margin: auto;
+    background-color: #CEE2D0;
+}

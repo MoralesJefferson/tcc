@@ -1,0 +1,14 @@
+const prisma = require('../Prisma');
+const buscaTodasFarmacias = async () =>{
+    try {
+        const farmacias = await prisma.farmacias.findMany({})
+        return farmacias
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+}
+module.exports ={
+    buscaTodasFarmacias
+    
+}
