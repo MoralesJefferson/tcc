@@ -1,0 +1,15 @@
+.Footer{
+    background-color: #034632; 
+    min-height: 4vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    color: aliceblue;
+}
+.desconectado{
+    display: none;
+}
+.conectado{
+    display: block;
+}

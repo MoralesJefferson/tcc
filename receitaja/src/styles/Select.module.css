@@ -1,0 +1,40 @@
+.BoxSelect{
+    display: flex;
+    flex-direction: column;
+    margin: 5px 10px;
+}
+
+.label{
+    color:#fff;
+    text-shadow: black 1px 1px;
+    font-size: 12px;
+    font-weight: 600;
+    
+}
+.select{
+    background-color: transparent;
+    padding: 7px 15px;
+    border-radius: 10px;
+    text-shadow: black 1px 1px;
+    color: #fff;
+    font-size: 14px;
+    border:2px solid rgba(255, 255, 255, 0.2);
+}
+
+.select:hover{
+    border:2px solid #0c5742b6;
+}
+.select:focus{
+    border:2px solid #0c5742b6;
+}
+.select > option{
+    background-color: #0c5742e8;;
+}
+.select:-webkit-autofill {
+    background-color: transparent !important;
+    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    box-shadow: 0 0 0 1000px transparent inset !important;
+    -webkit-text-fill-color: white !important; /* Força a cor do texto */
+    border: 2px solid rgba(255, 255, 255, 0.2); /* Reaplica o estilo da borda */
+    transition: background-color 5000s ease-in-out 0s; /* Mantém a cor de fundo no autofill */
+}

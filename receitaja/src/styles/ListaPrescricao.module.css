@@ -1,0 +1,37 @@
+.lista{
+    width:80vw ;
+    min-height: 86vh;
+    background-color: rgba(207, 197, 197, 0.877);
+    margin: 0px auto;
+    box-shadow: 2px 0 30px rgba(0,0,0,0.5);
+    
+    
+}
+.lista h1{
+    text-align: center;
+    padding-top: 25px;
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+    gap: 16px;
+    padding: 16px;
+  }
+
+.receita{
+    width: 300px;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.image{
+    width:50px;
+    height: 50px;
+}
+.image:hover{
+    cursor: pointer;
+}

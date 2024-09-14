@@ -1,0 +1,342 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modalContent {
+    background: #fff;
+    padding:20px 20px 20px 20px;
+    border-radius: 8px;
+    max-width: 30vw;
+    width: 100%;
+    
+    max-height: 90vh;
+    position: absolute;
+  }
+  
+.receita{
+    width: 100%;
+    height: 100%;
+    background-color:rgb(255, 255, 255);
+    border-radius: 7px;
+    border: solid 1px #034632;
+    box-shadow: 4px 1px 10px 2px #03463238;
+}
+.receituario{
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    text-align: center;
+    border-bottom: 1px black solid;
+    /*boder:solid 2px black;*/
+    margin: 7px;
+    padding: 7px;
+}
+.receituario h3{
+  font-size: 14px;
+  font-weight: 600;
+}
+.responses{
+  font-family: "Space Mono", monospace;
+}
+.dPessoais{
+    margin-left: 7px;
+    margin-right: 7px;
+    border-bottom: 1px black solid;
+    font-size: 11px;
+}
+.dPessoais h4{
+    text-align: center;
+    font-size: 14px;
+}
+.prescricao{
+    margin-left: 7px;
+    margin-right: 7px;
+    font-size: 11px;
+}
+.prescricao h4{
+    text-align: center;
+    font-size: 14px;
+}
+
+.medQtd{
+    display: flex;
+    justify-content: space-between;
+}
+.subSection{
+    margin-top: 7px;
+    border-bottom: 1px rgba(0, 0, 0, 0.075) solid;
+
+}
+.dataCity{
+    display: flex;
+    justify-content: end;
+    margin: 10% 0 10% 0;
+}
+
+.assinatura{  
+    width: 50%;
+    margin: auto;
+    border-top: 1px black solid;
+    text-align: center;
+}
+.btn{
+    background-color: rgba(3, 122, 53, 0.315);
+    border-radius: 4px;
+    padding:2px 5px 2px 5px;
+    border:1px rgba(3, 122, 53, 0.486) solid;
+    margin-bottom: 7px;;
+}
+
+
+
+/* src/components/Card.module.css */
+    /*font-family: "Roboto", sans-serif;
+  */
+  .body {
+    display:inherit;
+    background-color: rgba(0, 0, 0, 0.096);
+  }
+  .subBody {
+    width: 300px;
+    background-color: #fff;
+    border-radius: 7px;
+  }
+  
+  .header {
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    text-align: center;
+    border-bottom: 1px solid black;
+    margin: 7px;
+    padding: 7px;
+  }
+  .section {
+    margin-left: 7px;
+    margin-right: 7px;
+    border-bottom: 1px solid black;
+    font-size: 0.5em;
+    }
+.section h4{
+    text-align: center;
+    font-size: 1.5em;
+  }
+  .medQtd {
+    display: flex;
+    justify-content: space-between;
+  }
+  .subSection {
+    margin-top: 7px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+  }
+  .dataCity {
+    display: flex;
+    justify-content: end;
+    margin: 10% 0;
+  }
+  .prescricao {
+    border-bottom: none;
+  }
+  .assinatura {
+    width: 50%;
+    margin: auto;
+    border-top: 1px solid black;
+    text-align: center;
+    padding-bottom: 20px;
+  }
+  .btn {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+  }
+  /*button {
+    background-color: rgba(3, 122, 53, 0.315);
+    border-radius: 4px;
+    padding: 2px 5px;
+    border: 1px solid rgba(3, 122, 53, 0.486);
+  }
+  span {
+    font-weight: 500;
+}
+*/
+.nmMedico{
+    font-family: "Space Mono", monospace;
+    font-weight:700;
+    font-style: normal;
+}
+  
+  
+  .modalActions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+   
+    
+  }
+  
+  .btnPrint {
+    background-color:#245e3dd5;
+    color: white;
+    min-width:130px ;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: 0.5s;
+  }
+  
+  .btnEdit {
+    background-color:#245e3dd5;
+    color: white;
+    min-width:130px ;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: 0.5s;
+  }
+  .btnEdit:hover, .btnPrint:hover{
+    background-color:#245e3d;
+  }
+  .close{
+    color: #245e3d;
+    position: absolute;
+    right:0px;
+    top: 0px;
+    border-radius: 0px 7px 0px 7px;
+    padding:0px 5px;
+    background-color: #9dc5af98;
+  }
+  .close:hover{
+    cursor: pointer;
+    background-color: #88b49c;
+  }
+  
+
+
+  @media print {
+    @page {
+      size: 148mm 210mm;
+      margin: 5mm;
+    }
+  
+    
+    .close, .modalActions {
+      display: none;
+    }
+  
+    .receita {
+      font-size: 16pt;
+      color: black;
+      background: white; 
+      width: 100%;
+      min-height: 200mm; 
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
+    }
+ 
+    .assinatura {
+      text-align: center;
+      margin-top: 20px;
+    }
+  
+    .receituario {
+      font-family: "Times New Roman", serif;
+    }
+  
+    .receita {
+      page-break-inside: avoid;
+    }
+
+    .dataCity {
+      text-align: right;
+    }
+  }
+
+
+  /* Estilo geral do formulário de edição */
+  /*
+.formEdit {
+  font-family: "Roboto", sans-serif;
+  background-color: red;
+  border-radius: 8px;
+  box-shadow: 4px 1px 10px 2px #03463238;
+  padding:20px;
+  margin: 10px 0;
+  border: 1px solid #034632;
+  ;
+  }
+.formHeader {
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  color: #5e2424;
+  
+  }
+*/
+.form{
+  padding-bottom: 25px;
+}
+.inputEdit {
+  width: 100%;
+  
+  padding: 05px;
+  border: 1px solid #034632;
+  border-radius: 5px;
+  font-size: 12px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  background-color: rgba(61, 168, 133, 0.144);
+  transition: border-color 0.3s ease;
+}
+
+.editMedicamentoPrescricao{
+  display: flex;
+  justify-content: space-between;
+  
+}
+.medPrescricaoEdit{
+  width:310px;
+  min-width: 100px;
+}
+.medQtdEdit{
+  width: 80px ;
+  min-width:60px;
+}
+.btnSalvar {
+  background-color:#245e3dd5;
+  color: white;
+  min-width:130px ;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: 0.5s;
+}
+.btnSalvar:hover{
+  background-color:#245e3d;
+}
+
+
+/* Estilo responsivo */
+/*@media (max-width: 768px) {
+  .inputEdit, .btnEditForm, .btnCancel {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .formHeader {
+    font-size: 1rem;
+  }
+}*/

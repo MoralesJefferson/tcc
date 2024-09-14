@@ -1,0 +1,80 @@
+.boxLogin{
+    
+    background-color: #0c5742b6;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    backdrop-filter: blur(6px);
+    border:2px solid rgba(255, 255, 255, 0.2);
+}
+.boxForm{
+    
+    width: 90%;
+    height:90%;
+    text-shadow: black 1px 1px;   
+    
+    
+    
+    
+}
+
+.boxForm > h1{
+    color:#fff;
+    text-align: center;
+    font-size: 20px;
+    
+}
+
+.esqueceuSenha{
+    margin: 0px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -10px;
+    
+    
+    
+    
+}
+.esqueceuSenha > .link{
+    text-decoration: none;
+    color: #fff;
+    text-shadow: black 1px 1px;
+    font-size: 14px;
+}
+.link:hover{
+    color: #fff;   
+    text-decoration: underline;
+}
+.p{
+    text-align: center;
+    color: #fff;
+    text-shadow: black 1px 1px;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.p > .link{
+    text-decoration: none;
+    color:#0c5742;
+    text-shadow: black 1px 1px;
+    font-size: 16px;
+    transition: 0.3s;
+
+}
+.p > .link:hover{
+    color: #fff;
+}
+
+@media screen and (max-width: 800px) {
+    .boxLogin{
+        width: 90%;
+    }
+}
+/*
+@media screen and (max-height: 672px) {
+    
+}
+*/

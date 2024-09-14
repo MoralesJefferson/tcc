@@ -1,0 +1,108 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+.receita{
+    width: 268px;
+    height: 355px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 7px;
+    border: solid 1px #034632;
+    box-shadow: 4px 1px 10px 2px #03463238;
+    position: relative;
+}
+.receituario{
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+    border-bottom: 1px black solid;
+    margin: 7px;
+    padding: 7px;    
+}
+.receituario h3{
+    font-size: 14px;
+    font-weight: 600;
+}
+.responses{
+    font-family: "Space Mono", monospace;
+}
+
+.dPessoais{
+    margin-left: 7px;
+    margin-right: 7px;
+    border-bottom: 1px black solid;
+    font-size: 11px;
+    
+}
+.dPessoais h4{
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+}
+.prescricao{
+    margin-left: 7px;
+    margin-right: 7px;
+    font-size: 11px;
+}
+.prescricao h4{
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.medQtd{
+    display: flex;
+    justify-content: space-between;
+    
+    margin-bottom: px;
+}
+
+.subSection{
+    margin-top: 7px;
+    border-bottom: 1px rgba(0, 0, 0, 0.075) solid;
+
+}
+.dataCity{
+    display: flex;
+    justify-content: end;
+    margin-bottom: 30px;
+    font-family: "Space Mono", monospace;
+}
+.assinatura{  
+    width: 50%;
+    margin: auto;
+    border-top: 1px black solid;
+    text-align: center; 
+}
+.nomeMedico{
+    font-family: "Space Mono", monospace;
+    font-weight:700;
+    font-style: normal;
+}
+.btn
+{
+    background-color: rgba(3, 122, 53, 0.315);
+    border-radius: 4px;
+    padding:2px 5px 2px 5px;
+    border:1px rgba(3, 122, 53, 0.486) solid;
+    margin-top: 10px;
+    margin-bottom: 7px;
+    transition: 0.3s;
+}
+.btn:hover{
+    background-color:#245e3d ;
+    color: white;
+    cursor: pointer;
+}
+.p{
+  text-align: center;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 0px;
+
+}
+.espaco{
+    height: 30px;
+}
+
+
+
+ 

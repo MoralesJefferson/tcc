@@ -1,0 +1,406 @@
+/*estilo conectado*/
+/*
+.conectado{
+    position: absolute;
+    background-color: rgb(5, 5, 5);
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 2;
+}
+.conectado h1, .conectado span{
+    color: #ffffffff;
+}
+.conectado span{
+    padding-right: 20px;
+}
+
+.conectado .btn {
+    background: none;
+    border: none;
+    color: rgba(204, 204, 204, 0.541);
+    font-size: 32px;
+    cursor: pointer;
+    transition: 0.5s;
+    padding-left: 20px;
+}
+
+.conectado .btn:hover {
+    color: #ffffff;
+}
+.sidebar {
+    position: absolute;
+    width:250px;
+    height: 100vh;
+    top: 0;
+    left: -250;
+    padding-top: 60px;
+    /*overflow-x: hidden;*/
+    /*z-index: 1;
+    background-color: rgba(116, 116, 116, 0.37);
+    transition: all 0.5s;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+}
+.ulPrincipal,
+.subPrescricao,
+.subVantagens {
+    list-style: none;
+    padding-left: 0;
+}
+.opcao .link {
+    display: flex;
+    align-items: center;
+    color: black;
+    font-size: 18px;
+    padding: 8px 20px;
+    text-decoration: none;
+    transition: all 0.4s;
+    
+}
+
+.opcao .link:hover {
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.096);
+}
+.subMenu {
+    background-color: rgba(0, 0, 0, 0.096);
+    display: none;
+}
+
+.subMenu .subPrescricao .opcao .link,
+.subMenu .subVantagens .opcao .link {
+    padding-left: 50px;
+}
+.arrow {
+    margin:auto;
+    width: 12px;
+    height: 12px;
+    transition: transform 0.4s;
+}
+
+.arrow.rotate {
+    transform: rotate(90deg);
+}
+    */
+
+/* components/SidebarMenu.module.css ***************************************************************************/
+/* 
+.nav {
+    position: absolute;
+    background-color: rgb(5, 5, 5);
+    height: 60px;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 2;
+    
+}
+
+.nav h1,
+.nav span {
+    color: #ffffff;
+    padding-right: 20px;
+}
+
+.sidebar {
+    position: fixed;
+    width: 250px;
+    height: 100vh;
+    top: 0;
+    left: -250px;
+    padding-top: 60px;
+    /*overflow-x: hidden;*/
+/*    z-index: 1;
+    background-color: #f8f9fa;
+    transition: all 0.5s;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar.open {
+    left: 0;
+}
+
+.btn {
+    background: none;
+    border: none;
+    color: rgba(204, 204, 204, 0.541);
+    font-size: 32px;
+    cursor: pointer;
+    transition: 0.5s;
+    padding-left: 20px;
+}
+
+.btn:hover {
+    color: #ffffff;
+}
+
+.ulP,
+.subPrescricao,
+.subVantagens {
+    list-style: none;
+    padding-left: 0;
+}
+
+.li .a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    font-size: 18px;
+    padding: 8px 20px;
+    text-decoration: none;
+    transition: all 0.4s;
+    
+}
+
+.li .a:hover {
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.096);
+}
+
+.subMenu {
+    background-color: rgba(0, 0, 0, 0.096);
+}
+
+.subMenu .subPrescricao li a,
+.subMenu .subVantagens li a {
+    padding-left: 50px;
+}
+
+.arrow {
+    margin-left: auto;
+    width: 7px;
+    transition: transform 0.4s;
+}
+
+.arrow.rotate {
+    transform: rotate(90deg);
+}
+
+@media screen and (max-height: 450px) {
+    .sidebar .a,
+    .sidebar .sub {
+        font-size: 14px;
+    }
+    .sidebar {
+        width: 150px;
+    }
+    .navbar-toggler {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar .a,
+    .sidebar .sub {
+        font-size: 14px;
+    }
+    .sidebar {
+        width: 150px;
+    }
+    .navbar-toggler {
+        font-size: 22px;
+    }
+}*/
+/**********************************************************************************************************/
+/* components/SidebarMenu.module.css */
+
+.desconectado{
+    position: absolute;
+    left:50vw;
+    width: 50vw;  
+      
+}
+.boxLink{
+    background-color:transparent;
+    width: 30vw;
+    padding-top: 50px;
+    margin:auto;
+    display: flex;
+    justify-content: space-between;
+    
+}
+.boxLink > .link{
+    color: #04523a;
+    text-decoration: none;
+    font-size:20px;
+    font-weight: 600;
+    transition: 0.5s;
+}
+.boxLink > .link:hover{
+    color: #ffffff;
+}
+
+.nav {
+    
+background-color: #034632;
+min-height: 10vh;
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+z-index: 2;
+box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+
+}
+
+.nav h1,
+.nav span {
+    color: #ffffff;
+    
+}
+.nav span{
+   padding-right: 20px; 
+}
+.sidebar {
+    position: fixed;
+    width: 250px;
+    top: 0;
+    min-height: 100vh;
+    left: -250px;
+    overflow-x: hidden;
+    z-index: 1;
+    background-color: #125a43;
+    transition: all 0.5s;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar.open {
+    left: 0;
+}
+
+.btn {
+    background: none;
+    border: none;
+    
+    color: rgba(204, 204, 204, 0.541);
+    font-size: 32px;
+    cursor: pointer;
+    padding-left: 20px;
+    transition: 0.5s;
+    padding-left: 20px;
+}
+
+.btn:hover {
+    color: #ffffff;
+}
+
+.ulP,
+.subPrescricao,
+.subVantagens {
+    list-style: none;
+    padding-left: 0;
+}
+
+.a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ffffff;
+    font-size: 18px;
+    padding: 8px 20px;
+    text-decoration: none;
+    transition: all 0.4s;
+    
+}
+
+.a:hover {
+    color:#ffffffe3;
+    background-color: rgba(0, 0, 0, 0.096);
+}
+
+.subMenu {
+    background-color: rgba(0, 0, 0, 0.096);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+}
+
+.subMenu.show {
+    max-height: 300px;  
+    transition: max-height 0.5s ease-in;
+}
+
+.subMenu .subPrescricao .a,
+.subMenu .subVantagens .a {
+    padding-left: 50px;
+}
+
+.arrow {
+    margin-left: auto;
+    width: 7px;
+    height: 7px;
+    transition: transform 0.4s;
+}
+
+.arrow.rotate {
+    transform: rotate(90deg);
+}
+.liIcone{
+    display:flex;
+    align-items: flex-start;
+    padding-top: 5px;
+}
+.iconFecha{
+    color: black;
+    transition: 0.5s;
+}
+.iconFecha:hover{
+    color: rgba(0, 0, 0, 0.507);
+}
+.avatar{
+    width:100px;
+    height: 100px;
+    margin: auto;
+}
+
+@media screen and (max-height: 672px) {
+    .sidebar .a,
+    .sidebar .sub .a {
+        font-size: 14px;
+    }
+    .sidebar {
+        /*top: 0vh;*/
+        padding-top: 10vh;
+        width: 150px;
+    }
+    .boxLink{
+        padding-top:20px ;
+    /*.navbar-toggler {
+        font-size: 22px;
+    }*/
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar .a,
+    .sidebar .sub .a {
+        font-size: 14px;
+    }
+    .sidebar {
+        width: 150px;
+    }
+    .boxLink{
+        width: 48vw;
+    }
+    /*.navbar-toggler {
+        font-size: 22px;
+    }*/
+}
+
+@media screen and (max-width: 800px) {
+    .desconectado{
+        left: 0;
+        width: 100%;
+    }
+    .boxLink{
+        width: 95vw;
+    }
+}
+
+
+
+

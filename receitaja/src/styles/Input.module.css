@@ -1,0 +1,83 @@
+.BoxInputs{
+    display: flex;
+    flex-direction: column;
+    margin:5px 10px;
+    
+}
+.BoxInputs > label{
+    color: #fff;
+    font-weight: 600;
+    font-size:12px;
+    
+}
+.BoxInputs > input{
+
+    padding: 5px 15px;
+    border-radius: 10px;
+    outline: none;
+   
+    color: #fff;
+    font-size: 14px;
+    background-color: transparent;
+    /*background-color: green;*/
+    border:2px solid rgba(255, 255, 255, 0.2);
+    /*background-color: #348478;*/
+}
+
+.BoxInputs > input::placeholder{
+    color: #ffffff2f;
+    
+}
+.checkbox , .radio{
+    
+    flex-direction: row-reverse;
+    margin-left: 0px;
+    color: #ffffffff;
+    
+    
+    
+}
+.radio > label{
+    font-size: 12px;
+    margin-left: 7px;
+    font-weight: 100;     
+}
+
+.checkbox > label{
+    font-size: 14px;
+    font-weight:unset;
+    margin-left: 5px; 
+    
+}
+.crm , .crf{
+    width: 60%;
+
+}
+.input-prescreve > label {
+    color: black; 
+    text-shadow:none;
+}
+.input-prescreve > input {
+    background-color: transparent; 
+    color: black; 
+    border-color: black; 
+    width: 100%;
+}
+.input-prescreve > input::placeholder{
+    color: rgba(0, 0, 0, 0.315);
+    text-shadow:none;
+}
+.BoxInputs > input:hover{
+    border:2px solid #0c5742b6;
+}
+.BoxInputs > input:focus{
+    border:2px solid #0c5742b6;
+}
+.BoxInputs > input:-webkit-autofill {
+    background-color: transparent !important;
+    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    box-shadow: 0 0 0 1000px transparent inset !important;
+    -webkit-text-fill-color: white !important; 
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: background-color 5000s ease-in-out 0s; 
+}

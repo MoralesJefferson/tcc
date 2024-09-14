@@ -1,0 +1,76 @@
+.boxRegistra{
+    background-color: #ffffffff;
+    width: 90%;
+    
+    border-radius: 10px;
+    padding-top: 10px;
+}
+.titulo{
+    
+    text-align: center;
+}
+.box{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+
+}
+.formSelect{
+    width: 100%;
+    border:solid 2px rgba(15, 51, 4, 0.123);
+    border-radius: 10px;
+    font-size: 16px;
+    height: 45px;
+    padding: 10px 20px;
+    margin-bottom: 15px;
+    
+}
+.formSelect:focus{
+    border-color: rgba(15, 51, 4, 0.548);
+    outline: none;
+}
+.subBox{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}
+.med{
+    width: 75%;
+}
+.qtd{
+    width: 20%;
+}
+.qtdInput{
+    width: 100%;
+    height: 45px;
+    border-radius: 10px;
+    border:solid 2px rgba(15, 51, 4, 0.123);
+    text-align: center;
+
+}
+.qtdInput::placeholder{
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+.qtdInput:focus{
+    border-color: rgba(15, 51, 4, 0.548);
+    outline: none;
+}
+.formUsar{
+    width: 100%;
+    height: 45px;
+    border-radius: 10px;
+    border:solid 2px rgba(15, 51, 4, 0.123);
+    padding: 10px 20px;
+   
+}
+
+.formUsar::placeholder{
+    color: rgb(0, 0, 0);
+}
+.btn{
+    margin: 10px;
+}

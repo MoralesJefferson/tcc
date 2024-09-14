@@ -1,0 +1,24 @@
+.conteudoPrincipal{
+    background-color: rgba(170, 156, 170, 0.548);
+    /*min-height: 83vh;*/
+}
+/*{
+    background-color:blue;
+    min-height: 100vh;
+    min-width: 100vw;
+    top: 0px;
+}
+*/
+.desconectado{
+    background-color: blue;
+    
+}
+.conectado{
+    background-image: url('../../public/image/homeBackground.jpg');
+    min-height: 86vh;
+    background-position: center  ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
