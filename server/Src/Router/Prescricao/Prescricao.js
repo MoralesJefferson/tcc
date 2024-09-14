@@ -35,7 +35,7 @@ router.post("/homepage/prescrever",verificaToken, async (req, res) => {
             }
         }
         trataPrescricao.medicamentos = newMedicamento;
-        await registraPrescricao(trataPrescricao);
+        await registraPrescricao(trataPrescricao);cd 
 
         res.status(201).json({ message: 'Prescrição cadastrada com sucesso' });
 

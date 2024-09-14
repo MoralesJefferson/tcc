@@ -175,6 +175,64 @@ const consultarPrescricao = async (prescricao_id) => {
 
   const listaTodasPrescricoes = async () => {
     try {
+      /*const prescricoes = await prisma.$queryRaw`
+    SELECT 
+      p1.nm_pessoa AS medico, 
+      p2.nm_pessoa AS paciente, 
+      pr.data_prescricao, 
+      pr.status,
+      m.medicamento_id,
+      m.nome AS nome_medicamento,
+      pm.quantidade AS quantidade_prescrita,
+      pm.forma_uso
+    FROM 
+      prescricoes pr
+    JOIN 
+      funcionarios f1 ON pr.funcionario_id = f1.pessoa_id
+    JOIN 
+      pessoas p1 ON f1.pessoa_id = p1.id
+    JOIN 
+      pacientes pass ON pr.paciente_id = pass.pessoa_id
+    JOIN 
+      pessoas p2 ON pass.pessoa_id = p2.id
+    left JOIN 
+      prescricao_medicamentos pm ON pr.prescricao_id = pm.prescricao_id
+    left JOIN 
+      medicamentos m ON pm.medicamento_id = m.medicamento_id
+  `;
+
+  // Agrupa os dados
+  const resultado = prescricoes.reduce((acc, item) => {
+    // Cria um identificador único para cada prescrição
+    const chavePrescricao = `${item.data_prescricao}-${item.medico}-${item.paciente}`;
+
+    if (!acc[chavePrescricao]) {
+      acc[chavePrescricao] = {
+        medico: item.medico,
+        paciente: item.paciente,
+        data_prescricao: item.data_prescricao,
+        status: item.status,
+        medicamentos: []
+      };
+    }
+
+    acc[chavePrescricao].medicamentos.push({
+      medicamento_id: item.medicamento_id,
+      nome_medicamento: item.nome_medicamento,
+      quantidade_prescrita: item.quantidade_prescrita,
+      forma_uso: item.forma_uso
+    });
+
+    return acc;
+  }, {});
+
+  // Converte o resultado para um array
+  const resultadoFormatado = Object.values(resultado);
+
+  console.log(resultadoFormatado);
+
+  
+      */
       const prescricoes = await prisma.prescricoes.findMany({
         include: {
           funcionarios: {
@@ -213,9 +271,9 @@ const consultarPrescricao = async (prescricao_id) => {
               }
             }
           }
-        }
-      });
-  
+          }
+        });
+        
       const formattedPrescricoes = prescricoes.map(prescricao => ({
         prescricao_id: prescricao.prescricao_id,
         funcionario_nome: prescricao.funcionarios.pessoas.nm_pessoa,
@@ -238,6 +296,7 @@ const consultarPrescricao = async (prescricao_id) => {
   
       console.log('Dados das prescrições:', formattedPrescricoes);
       return formattedPrescricoes;
+      
     } catch (error) {
       console.error('Erro ao consultar prescrições:', error);
       throw error;
