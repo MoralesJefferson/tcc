@@ -15,18 +15,18 @@ const io = socketIo(server, {
 
 const routerFuncionario = require("./Router/Funcionario/Funcionario");
 const routerPaciente = require("./Router/Paciente/Paciente")(io);
-const routerPrescricao = require("./Router/Prescricao/Prescricao");
+const routerPrescricao = require("./Router/Prescricao/Prescricao")(io);
 const routerMedicamento = require("./Router/Medicamento/Medicamento");
 const routerFarmacia = require("./Router/Farmacia/Farmacia");
 
 app.use(express.json());
 app.use(cors());
-app.use(routerPrescricao.router);
+app.use(routerPrescricao);
 app.use(routerFuncionario.router);
-app.use(routerPaciente); // Utilize diretamente
+app.use(routerPaciente);
 app.use(routerMedicamento.router);
 app.use(routerFarmacia.router);
-//app.set(io)
+
 const porta = 5008;
 const host = "0.0.0.0";
 
