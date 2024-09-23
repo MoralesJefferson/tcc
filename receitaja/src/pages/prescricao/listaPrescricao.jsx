@@ -10,13 +10,17 @@ import { useState,useEffect,useRef } from "react";
 import Axios from "axios";
 import { io, Socket } from "socket.io-client";
 import RegistraPrescricao from "../../../components/layout/registra/RegistraPrescricao";
+
 const ListaPrescricao = () => {
+  
   const router = useRouter();
   const [message, setMessage] = useState("");
   const [prescricoes, setPrescricoes] = useState([]);
   const [selectedPrescricao, setSelectedPrescricao] = useState(null);
-  const [componentRegitra, setComponentRegitra] = useState(false);
+  const [novaPrescricao, setNovaPrescricao] = useState(false);
+  
   const socketRef = useRef(null);
+  
   const fetchPrescricao = () => {
     Axios.get("http://localhost:5008/homepage/lista/prescricao")
       .then((response) => {
@@ -28,24 +32,28 @@ const ListaPrescricao = () => {
       });
   };
   const abreNovaPrescricao = () => {
-    setComponentRegitra(true);
+    setNovaPrescricao(true);
   };
-  const fechaNovaPrescricao = () => {
-    setComponentRegitra(false);
+  const closePrescricao = () => {
+    setNovaPrescricao(false);
   };
   useEffect(() => {
     fetchPrescricao();
+
     socketRef.current = io("http://localhost:5008");
 
-    // Ouvir por mensagens do servidor
     socketRef.current.on("message", (msg) => {
-      console.log(msg.name);
-      setMessage(msg);
+      setMessage(msg)
+      console.log('xxx',msg)
+      setPrescricoes((prevPrescricoes) => {
+        return [msg, ...prevPrescricoes]; 
+      });
+
     });
     return () => {
       socketRef.current.off("message");
     };
-  }, []);
+  },[]);
 
   return (
     <Container>
@@ -62,7 +70,7 @@ const ListaPrescricao = () => {
               src={imageAdicao}
               alt="Adicionar"
             />
-            {componentRegitra && <RegistraPrescricao />}
+            {novaPrescricao && <RegistraPrescricao closePrescricao = {closePrescricao}/>}
           </div>
           {prescricoes.map((prescricao) => (
             <Card key={prescricao.prescricao_id} id={prescricao.prescricao_id} prescricao={prescricao} />

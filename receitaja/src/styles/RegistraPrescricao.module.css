@@ -17,12 +17,26 @@
     border-radius: 8px;
     max-width: 30vw;
     width: 100%;
-    max-height: 90vh;
+    max-height: 83vh;
+    overflow-y: auto;
+    position: relative;
     
-  }
+}
+.close{
+    color: #245e3d;
+    position: absolute;
+    right:0px;
+    top: 0px;
+    border-radius: 0px 7px 0px 7px;
+    padding:0px 5px;
+    background-color: #9dc5af98;
+}
+.close:hover{
+  cursor: pointer;
+  background-color: #88b49c;
+}
   
 .receita{
-    background-color:rgb(255, 240, 25);
     border-radius: 7px;
     padding: 7px;
     border: solid 1px #034632;
@@ -41,20 +55,38 @@
     font-weight: 600; 
 
 }     
-/*.receita {
-        position: absolute;
-        background: #f7d3d3;
-        padding: 20px;
-        border-radius: 8px;
-        max-width: 60%;
-        width: 30vw;
-        z-index: 20;
-}*/
 .formSelect{
     width: 100%;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 12px;
     padding: 5px;
+    border: 1px solid #008000;
+    background-color: #3da88525;
+    transition: border-color 0.3s ease;
+}
+.formSelect:hover{
+    border: 1px solid #034632;
+}
+.formSelect:focus{
+    border: 2px solid #034632;
+}
+.formLabel{
+    font-size: 12px;
+}
+.medQtd{
+    display: flex;
+    justify-content: space-between;
+}
+.medicamento{
+    width: 75%;
+    min-width:50%;
+    margin-right: 10px;
+}
+.qtd{
+    display: flex;
+    flex-direction: column;
+    padding-top: 6px;
+    
 }
 
 .testandoEstilo {
@@ -62,26 +94,46 @@
     background-color: rgb(0, 255, 55);
 }
 
-.MuiInputBase-root .MuiOutlinedInput-root .MuiInputBase-colorPrimary .MuiInputBase-fullWidth .MuiInputBase-formControl .MuiInputBase-adornedEnd .MuiAutocomplete-inputRoot .css-154xyx0-MuiInputBase-root-MuiOutlinedInput-rootMuiAutocomplete-root .MuiOutlinedInput-root{
-    padding: 0px;
-}
-
-/*
-.testandoEstilo .MuiOutlinedInput-root {
+.formControl{
+    padding: 4px;
+    border: 1px solid #008000;
     border-radius: 5px;
-    padding: 5px;
+    font-size: 12px;
+    margin-top: 0px;
+    margin-bottom: 3px;
+    background-color: #3da88525;
+    height: 27px;
+    transition: border-color 0.3s ease;
+    outline: none;
+    min-width: 70px;
 }
+.formControl:hover{
+    border: 1px solid #034632;
+}
+.formControl:focus{
+    border: 2px solid #034632;
+}
+.formUsar{
+    display: flex;
+    flex-direction: column;
+}
+.btnCentro{
+    display: flex;
+    justify-content: center;
+}
+.btnRemove{
+    margin-left: 0 auto;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1px solid #008000;
+    background-color:#037a3550; 
+}
+.removeMed:hover{
+    cursor: pointer;
+    border: 1px solid #034632;
 
-.testandoEstilo .MuiOutlinedInput-input {
-    font-size: 16px;
 }
-
-.testandoEstilo .MuiAutocomplete-inputRoot[class*="MuiOutlinedInput-root"] {
-    padding: 0;
+.removeMed:focus{
+    border: 2px solid #034632;
 }
-
-.customAutocomplete .MuiOutlinedInput-root {
-    background-color: #c91e1e; /* Substitua pela cor desejada 
-    border-radius: 5px;
-}
-*/

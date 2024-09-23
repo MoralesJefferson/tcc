@@ -1,0 +1,104 @@
+.lista{
+    width:80vw ;
+    min-height: 86vh;
+    background-color: rgba(207, 197, 197, 0.877);
+    margin: 0px auto;
+    box-shadow: 2px 0 30px rgba(0,0,0,0.5);
+    padding-top: 30px;
+}
+.cxTabela{
+    background-color:#ffffffff;
+    width: 90%;
+    margin: auto auto;
+
+    border-radius: 10px;
+    border:solid 2px green
+}
+.tabela {
+    background-color: rgba(127, 255, 212, 0);
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14px;
+}
+.cabecalho{
+    background-color: #15886b4b;
+    
+}
+.id{
+    width: 7%;
+    min-width: 80px;
+    text-align: center;
+    background-color: rgba(137, 43, 226, 0);
+    border-right: solid 1px green;
+    padding:5px;
+}
+.nomeTh{
+    text-align: center;
+    width: 25%;
+    border-right: solid 1px green;
+    padding:5px;
+}
+.nome{
+    width: 25%;
+    border-right: solid 1px green;
+    padding-left: 20px;
+    padding:5px; 
+}
+.cpf{
+    width: 200px;
+    text-align: center;
+    border-right: solid 1px green;
+    padding:5px;
+}
+.data{
+    width: 200px;
+    text-align: center;
+    border-right: solid 1px green;
+    padding:5px;
+}
+.funcaoTh{
+    
+    text-align: center;
+    padding:5px;
+}
+.row:nth-child(even){
+    background: rgba(45, 129, 45, 0.096);
+}
+.row:hover{
+    background-color:rgba(39, 129, 39, 0.226) ;
+}
+.adicionar, .editar, .deletar {
+    background-color: #4CAF50;
+    color: black;
+    font-weight: 600;
+    padding:2px 30px 2px  30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    border: solid 1px #2d6e2f;
+    transition: 0.3s;
+}
+.adicionar:hover{
+    background-color: #367e38 ;
+}
+.editar{
+    background-color: rgba(208, 255, 0, 0.233);
+}
+.editar:hover{
+    background-color: rgba(255, 255, 0, 0.466);
+}
+.deletar{
+    background-color: rgba(255, 0, 0, 0.377);
+}
+.deletar:hover{
+    background-color: rgba(255, 0, 0, 0.568);
+}
+.funcao{
+    display: flex;
+    justify-content: center;
+    gap:15px;
+}
