@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useState } from "react";
 import styles from "../../../src/styles/NavBar.module.css";
 import setaMenu from "../../../public/angle-right.svg"
-
+import Cookies from 'js-cookie';
 import avatar from "../../../public/avatar.png"
 import Image from "next/image";
 
@@ -17,7 +17,10 @@ const NavBar = ({ statusNav }) => {
     const toggleSubMenu = (menu) => {
         setSubMenuOpen((prev) => ({ ...prev, [menu]: !prev[menu] }));
     };
-  
+    
+    const removeToken=()=>{
+        Cookies.remove('token')
+    }
     
   return (
     <>{statusNav === 'desconectado'?
@@ -55,27 +58,26 @@ const NavBar = ({ statusNav }) => {
                 </button>
                     </li>
                     <li className={styles.li}>
-                        <Link className={styles.a} href="/">home</Link>
-                    </li>
-                    <li className={styles.li}>
                         <Link className={styles.a} href="/prescricao" onClick={(e) => { e.preventDefault(); toggleSubMenu('prescricao'); }}>   
                             Prescrição <Image className={`${styles.arrow} ${subMenuOpen.prescricao ? styles.rotate : ''}`} src={setaMenu} alt="" />
                         </Link>
                         <div className={`${styles.subMenu} ${subMenuOpen.prescricao ? styles.show : ''}`}>
                             <ul className={styles.subPrescricao}>
                                 <li className={styles.li}><Link className={styles.a} href="/prescricao/listaPrescricao">Prescrever</Link></li>
-                                <li className={styles.li}><Link className={styles.a} href="/prescricao/listaPrescricao">Histórico</Link></li>
+                                <li className={styles.li}><Link className={styles.a} href="/prescricao/historyPrescricao">Histórico</Link></li>
                             </ul>
                         </div>
                     </li>
-                    <li className={styles.li}>
-                        <Link className={styles.a} href="/sobre">sobre</Link>
-                    </li>
+                    
                     <li className={styles.li}>
                         <Link className={styles.a} href="/paciente/ListaPaciente">Paciente</Link>
                     </li>
+
                     <li className={styles.li}>
                         <Link className={styles.a} href="/contato">contato</Link>
+                    </li>
+                    <li className={styles.li}>
+                        <Link className={styles.a} onClick={removeToken} href="/">Sair</Link>
                     </li>
                 </ul>
             </div>

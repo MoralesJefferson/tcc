@@ -1,7 +1,7 @@
 const express = require("express");
 const { verificaToken } = require("../../middleware/verificaToken");
 const { prescricao_medicamentos, medicamentos } = require("../../../db/Prisma");
-const { registraPrescricao, consultarPrescricao, listaTodasPrescricoes } = require("../../../db/prescricao/prescricao");
+const { registraPrescricao, consultarPrescricao, listaTodasPrescricoes, editaPrescricao, deletePrescricao, baixarPrescricao } = require("../../../db/prescricao/prescricao");
 const { date } = require("zod");
 const { consultarMedicamentosNome, registraMedicamento } = require("../../../db/medicamento/medicamento");
 const { registraEstoque } = require("../../../db/estoque/estoque");
@@ -19,7 +19,7 @@ module.exports = (io) => {
         });
     });
 
-    router.post("/homepage/prescrever",verificaToken, async (req, res) => {
+    router.post("/homepage/prescrever",/*verificaToken,*/ async (req, res) => {
         try {
             const data = req.body
             data.funcionario_id = req.usuario
@@ -39,15 +39,16 @@ module.exports = (io) => {
                     for (const farm of list_farmacia) {
                         await registraEstoque({ farmacia_id: farm.farmacia_id, medicamento_id: reg_medicamento.medicamento_id, quantidade: 0 });
                     }
-                    newMedicamento.push({ medicamento_id: reg_medicamento.medicamento_id, quantidade: Number(e.quantidade), uso: e.uso });
+                    newMedicamento.push({ medicamento_id: reg_medicamento.medicamento_id, quantidade: Number(e.quantidade), forma_uso: e.forma_uso });
                 } else {
-                    newMedicamento.push({ medicamento_id: med.medicamento_id, quantidade: Number(e.quantidade), uso: e.uso });
+                    newMedicamento.push({ medicamento_id: med.medicamento_id, quantidade: Number(e.quantidade), forma_uso: e.forma_uso });
                 }
             }
             trataPrescricao.medicamentos = newMedicamento;
+            
             const prescricao = await registraPrescricao(trataPrescricao); 
             const consultaPrescricao = await consultarPrescricao(prescricao);
-            
+        
             io.emit('message',consultaPrescricao);
 
 
@@ -58,12 +59,64 @@ module.exports = (io) => {
             res.status(500).json({ message: 'Erro interno ao processar a requisição' });
         }
     });
+    
+    router.post("/prescricao/editar/:id",/*verificaToken,*/ async (req, res) => {
+        try {
+            const id = Number(req.params.id);
+            const {medicamentos} = req.body;
+            const newMedicamento = [];
 
+            for (const e of medicamentos) {
+                const med = await consultarMedicamentosNome(e.nome);
+                if (med === null) {
+                    const reg_medicamento = await registraMedicamento({ nome: e.nome, descricao: null, fabricante: null });
+                    const list_farmacia = await buscaTodasFarmacias();
+                    for (const farm of list_farmacia) {
+                        await registraEstoque({ farmacia_id: farm.farmacia_id, medicamento_id: reg_medicamento.medicamento_id, quantidade: 0 });
+                    }
+                    newMedicamento.push({ medicamento_id: reg_medicamento.medicamento_id, quantidade: Number(e.quantidade), forma_uso: e.forma_uso });
+                } else {
+                    newMedicamento.push({ medicamento_id: med.medicamento_id, quantidade: Number(e.quantidade), forma_uso: e.forma_uso });
+                }
+            }
+            const prescricaoEditada = await editaPrescricao(id,newMedicamento); 
+            res.status(201).json({ message: 'Prescrição Editada com sucesso' });
+
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ message: 'Erro interno ao processar a requisição' });
+        }
+    })
+
+    
+    router.post("/prescricao/baixar/:id",/*verificaToken,*/ async (req, res) => {
+        try {
+            const id = Number(req.params.id);
+            const baixa = await baixarPrescricao(id)
+
+            res.status(201).json({ message: 'Prescrição entregue com sucesso' });   
+        } catch (error) {
+            res.status(500).json({ message: 'Erro interno ao processar a requisição' });
+        }
+        
+    })
+
+    router.post("/prescricao/delete/:id",/*verificaToken,*/ async (req, res) => {
+        try {
+            const id = Number(req.params.id);
+            const deleted = await deletePrescricao(id)
+
+            res.status(201).json({ message: 'Prescrição deletada com sucesso' });   
+        } catch (error) {
+            res.status(500).json({ message: 'Erro interno ao processar a requisição' });
+        }
+        
+    })
+    
 
     router.get("/homepage/lista/prescricao", async (req, res) => {
         try {
             const listaPrescricao = await listaTodasPrescricoes();
-            console.log(listaPrescricao);
             res.status(200).json(listaPrescricao);
         } catch (error) {
             res.status(500).json({

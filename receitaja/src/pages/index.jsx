@@ -7,9 +7,12 @@ import Axios  from "axios";
 import Button from "../../components/buttons/Button";
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
+import { useUser } from "../../context/UserContext";
 
 export default function Home() {
   const router = useRouter();
+  
+  const {setTipoUser, tipoUser } = useUser()
   const login = async (e)=>{
     e.preventDefault()
     const dados = {};
@@ -24,15 +27,18 @@ export default function Home() {
         return alert("senha obrigatorio");
     } 
     try {
-      console.log("XX",router.asPath)
+      
         const {data} = await Axios.post('http://localhost:5008/funcionario/login',dados) 
+        console.log(data.funcao)
+        
         if (data.token){
+          setTipoUser(data.funcao)
           Cookies.set('token',data.token); 
           router.push('/prescricao/listaPrescricao');
-        }
-        //Cookies.remove('testToken)'
+        } 
+        //console.log("tipoUser",tipoUser)
     } catch (error) {
-     /* console.log(error.response.data)*/
+      console.log('erro ao logar:',error)
     } 
   }
   return (

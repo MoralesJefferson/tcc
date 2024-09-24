@@ -15,12 +15,43 @@
     text-align: center;
     border-bottom: 1px black solid;
     margin: 7px;
-    padding: 7px;    
+    padding: 7px;  
 }
+.receituarioFarma{
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+    border-bottom: 1px black solid;
+    margin: 7px;
+    padding: 7px; 
+    display: flex;
+    justify-content: space-between;   
+}
+.receituarioFarma h3{
+    font-size: 14px;
+    font-weight: 600;
+}
+
 .receituario h3{
     font-size: 14px;
     font-weight: 600;
 }
+.amarelo{
+    background-color: yellow;
+    width: 15px;
+    border-radius: 50%;
+}
+.vermelho{
+    background-color: red;
+    width: 15px;
+    border-radius: 50%;
+}
+.verde{
+    background-color: green;
+    width: 15px;
+    border-radius: 50%;
+}
+
+
 .responses{
     font-family: "Space Mono", monospace;
 }
@@ -102,6 +133,7 @@
 .espaco{
     height: 30px;
 }
+
 
 
 

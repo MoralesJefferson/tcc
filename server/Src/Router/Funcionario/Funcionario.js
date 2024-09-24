@@ -1,4 +1,5 @@
 const express = require("express");
+require('dotenv').config();
 const router = express.Router(); 
 const jwt = require("jsonwebtoken")
 const z = require ('zod');
@@ -22,7 +23,7 @@ const usuarioLogin = z.object({
     senha: z.string().trim(),
 })
 
-//registra um novo funcionario
+
 router.post("/funcionario/registro", async (req,res)=>{
     try {
         const data = usuarioEsquema.parse(req.body);
@@ -56,22 +57,22 @@ router.post('/funcionario/login', async (req,res)=>{
         
         const data = usuarioLogin.parse(req.body);
 
-        
         usuario = await verificaLogin(data);
-        
         
         if (usuario.error){
             return res.status(401).send(usuario);
         }
 
+        console.log(usuario)
         const secret = process.env.SECRET;
         
         const token = jwt.sign({
-            usuarioId:usuario.id
+            usuarioId:usuario.id,
         },secret,{expiresIn:1000});
 
         res.status(200).json({
             'token':token,
+            'funcao':usuario.funcionarios.funcoes.nm_funcao,
             'success': true
         });
 

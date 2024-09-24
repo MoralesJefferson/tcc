@@ -13,12 +13,13 @@ const registraPrescricao = async (data) => {
       });
 
       for (const medicamento of data.medicamentos) {
+       
         await prisma.prescricao_medicamentos.create({
           data: {
             prescricao_id: novaPrescricao.prescricao_id,
             medicamento_id: medicamento.medicamento_id,
             quantidade: medicamento.quantidade,
-            forma_uso: medicamento.uso,
+            forma_uso: medicamento.forma_uso,
           },
         });
       }
@@ -38,9 +39,80 @@ const registraPrescricao = async (data) => {
     return prescricao;
 
   } catch (error) {
-    console.error("Erro ao cadastrar prescrição:", error);
+    console.log("Erro ao cadastrar prescrição:", error);
   }
 };
+
+const editaPrescricao = async (id, medicamentos) => {
+  try {
+    
+    await prisma.$transaction(async (tx) => {
+      
+      await tx.prescricao_medicamentos.deleteMany({
+        where: { prescricao_id: id },
+      });
+      for (const medicamento of medicamentos) {      
+        await tx.prescricao_medicamentos.create({
+          data: {
+            prescricao_id: id,
+            medicamento_id: medicamento.medicamento_id,
+            quantidade: medicamento.quantidade,
+            forma_uso: medicamento.forma_uso,
+          },
+        });
+      }
+    });
+
+    
+    return{ message: 'Prescrição editada com sucesso' };
+  } catch (error) {
+    console.log(error);
+    return error
+  }
+};
+const baixarPrescricao = async(id)=>{
+    try {
+
+      await prisma.prescricoes.update({
+        where:{prescricao_id:id},
+        data:{
+          status:'Entregue'
+        }
+      })
+
+      return{ message: 'Prescrição baixada com sucesso' };
+    } catch (error) {
+      console.log(error);
+      return error
+    }
+}
+
+
+const deletePrescricao = async(id)=>{
+  try {
+    console.log(id)
+    await prisma.$transaction(async (tx) => {
+      
+      await tx.prescricao_medicamentos.deleteMany({
+        where: { prescricao_id: id },
+      });
+
+      await tx.status_prescricao_historico.deleteMany({
+        where: { prescricao_id: id },
+      });     
+      
+      await tx.prescricoes.deleteMany({
+        where:{prescricao_id:id}
+      })
+      
+    });
+
+    return{ message: 'Prescrição deletada com sucesso' };
+  } catch (error) {
+    console.log(error);
+    return error
+  }
+}
 
 const consultarPrescricao = async (prescricao_id) => {
   try {
@@ -72,7 +144,7 @@ const consultarPrescricao = async (prescricao_id) => {
       p.prescricao_id = ${prescricao_id}`;
 
     const formatedPrescricao = {
-      prescricao_id:prescricao[0].prescricao_id,
+      prescricao_id:prescricao_id,
       data_prescricao: prescricao[0].data,
       status: prescricao[0].status,
       funcionario_nome: prescricao[0].funcionario,
@@ -108,6 +180,7 @@ const listaTodasPrescricoes = async () => {
         },
         pacientes: {
           select: {
+            cartao_sus:true,
             pessoas: {
               select: {
                 nm_pessoa: true,
@@ -143,7 +216,8 @@ const listaTodasPrescricoes = async () => {
       prescricao_id: prescricao.prescricao_id,
       funcionario_nome: prescricao.funcionarios.pessoas.nm_pessoa,
       paciente_nome: prescricao.pacientes.pessoas.nm_pessoa,
-      dt_nacimento:prescricao.pacientes.pessoas.dt_nascimento,
+      cartao_sus: prescricao.pacientes.cartao_sus,
+      dt_nascimento:prescricao.pacientes.pessoas.dt_nascimento,
       data_prescricao: prescricao.data_prescricao,
       status: prescricao.status,
       medicamentos: prescricao.prescricao_medicamentos.map((pm) => ({
@@ -172,4 +246,7 @@ module.exports = {
   registraPrescricao,
   consultarPrescricao,
   listaTodasPrescricoes,
+  editaPrescricao,
+  deletePrescricao,
+  baixarPrescricao 
 };

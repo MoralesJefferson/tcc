@@ -2,15 +2,24 @@
 import { useState } from "react";
 import styles from "../../../src/styles/Card.module.css";
 import ModalCard from "../modal/ModalCard";
+import { useUser } from "../../../context/UserContext";
 
-const Card = ({ prescricao, id }) => {
-  const { paciente_nome, data_prescricao, medicamentos, funcionario_nome } =
-    prescricao;
+const Card = ({ prescricao ,fetchPrescricao }) => {
+
+  const {setTipoUser, tipoUser } = useUser()
+
+  const { paciente_nome, data_prescricao ,dt_nascimento, medicamentos, funcionario_nome, prescricao_id,cartao_sus,status } = prescricao;
   const [modal, setModal] = useState(false);
   const formatDate = (dateString) => {
     const options = { day: "2-digit", month: "long", year: "numeric" };
     return new Date(dateString).toLocaleDateString("pt-BR", options);
   };
+  const formatDateNascimento =(dataString) => {
+      const data = new Date(dataString).toISOString().split('T')[0]
+      const [ano, mes, dia] = data.split('-');
+      const dataFormatada = `${dia}-${mes}-${ano}`;
+      return dataFormatada
+  }  
   const maisDetalhes = () => {
     setModal(true);
   };
@@ -20,21 +29,48 @@ const Card = ({ prescricao, id }) => {
 
   return (
     <div className={styles.receita}>
+      
       <div className={styles.border}>
-        <div className={styles.receituario}>
-          <h3>RECEITUÁRIO - {id}</h3>
-        </div>
+      {tipoUser === 'Medico' ? (
+  // Render para Médico
+  <div className={styles.receituario}>
+    <h3>RECEITUÁRIO - {prescricao_id}</h3>
+    <h3 className={styles.status} title="Médico"></h3>
+  </div>
+) : (
+  // Render para Farmacêutico ou outro usuário
+  <div
+    className={styles.receituarioFarma}
+  >
+    <h3>
+      RECEITUÁRIO - {prescricao_id} 
+    </h3>
+    <h3
+      className={`${status === 'Separado' ? styles.amarelo : status === 'Pendente' ? styles.vermelho : status === 'Entregue' ? styles.verde : ''}`}
+      title={
+        status === 'Separado'
+          ? 'Separado'
+          : status === 'Pendente'
+          ? 'Pendente'
+          : status === 'Entregue'
+          ? 'Entregue'
+          : 'Status desconhecido'
+      }
+    ></h3>
+  </div>
+)}
         <section className={styles.dPessoais}>
           <h4>Dados Pessoais</h4>
+      
           <p>
             <span><strong>Paciente:</strong></span>
             <span className={styles.responses}>{paciente_nome}</span><br/>
           
             <span><strong>Data Nascimento:</strong></span>
-            <span className={styles.responses}>{" "}</span><br /> 
-          
+            <span className={styles.responses}>{formatDateNascimento(dt_nascimento)}</span><br /> 
+
             <span><strong>Convênio:</strong></span>
-            <span className={styles.responses}>{" "}</span>
+            <span className={styles.responses}>{cartao_sus}</span>
           </p>
         </section>
         <section className={styles.prescricao}>
@@ -44,7 +80,7 @@ const Card = ({ prescricao, id }) => {
               index < 1 && (
                 <div key={index} className={styles.subSection}>
                   <div className={styles.medQtd}>
-                    
+                      
                       <span><strong>Medicamento:</strong> <span className={styles.responses}>{med.nome}</span></span>
                     
                     
@@ -82,7 +118,7 @@ const Card = ({ prescricao, id }) => {
           </div>
         </section>
       </div>
-      {modal && <ModalCard prescricao={prescricao} id={id} onClose={fechaDetalhes} />}
+      {modal && <ModalCard prescricao={prescricao} id={prescricao_id} onClose={fechaDetalhes}  fetchPrescricao={fetchPrescricao}/>}
     </div>
   );
 };

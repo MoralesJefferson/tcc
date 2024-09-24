@@ -10,13 +10,14 @@ import { useState,useEffect,useRef } from "react";
 import Axios from "axios";
 import { io, Socket } from "socket.io-client";
 import RegistraPrescricao from "../../../components/layout/registra/RegistraPrescricao";
+import { useUser } from "../../../context/UserContext";
 
 const ListaPrescricao = () => {
-  
+  const {setTipoUser, tipoUser } = useUser()
   const router = useRouter();
   const [message, setMessage] = useState("");
   const [prescricoes, setPrescricoes] = useState([]);
-  const [selectedPrescricao, setSelectedPrescricao] = useState(null);
+  //const [selectedPrescricao, setSelectedPrescricao] = useState(null);
   const [novaPrescricao, setNovaPrescricao] = useState(false);
   
   const socketRef = useRef(null);
@@ -26,6 +27,7 @@ const ListaPrescricao = () => {
       .then((response) => {
         console.log(response.data);
         setPrescricoes(response.data);
+        console.log(prescricoes)
       })
       .catch((error) => {
         console.error("Erro ao buscar prescrições:", error);
@@ -44,7 +46,6 @@ const ListaPrescricao = () => {
 
     socketRef.current.on("message", (msg) => {
       setMessage(msg)
-      console.log('xxx',msg)
       setPrescricoes((prevPrescricoes) => {
         return [msg, ...prevPrescricoes]; 
       });
@@ -60,20 +61,21 @@ const ListaPrescricao = () => {
       <div className={styles.lista}>
         
         <div className={styles.gridContainer}>
-          <div className={styles.receita}>
-            
-
-            <Image
-              onClick={abreNovaPrescricao}
-              className={styles.image}
-              title="Click para adicionar uma nova prescrição"
-              src={imageAdicao}
-              alt="Adicionar"
-            />
-            {novaPrescricao && <RegistraPrescricao closePrescricao = {closePrescricao}/>}
-          </div>
+          { tipoUser === 'Medico'?
+            <div className={styles.receita}>
+                <Image onClick={abreNovaPrescricao} className={styles.image} title="Click para adicionar uma nova prescrição" src={imageAdicao} alt="Adicionar"/>
+                {novaPrescricao && <RegistraPrescricao closePrescricao = {closePrescricao}/>}
+            </div>:<></>
+          }
           {prescricoes.map((prescricao) => (
-            <Card key={prescricao.prescricao_id} id={prescricao.prescricao_id} prescricao={prescricao} />
+              prescricao && prescricao.status ?(
+                prescricao.status ==='Entregue'?<></>:<Card key={prescricao.prescricao_id} prescricao={prescricao} fetchPrescricao={fetchPrescricao} />
+              
+              ) :(<></>)
+              /*prescricao.status ==='Entregue'?
+               <></>:<>{prescricao.status}</>
+              /*prescricao.status === 'Entregue'?<>{prescricao.status}</>:
+              <Card key={prescricao.prescricao_id} prescricao={prescricao} fetchPrescricao={fetchPrescricao} />*/
           ))}
         </div>
       </div>

@@ -12,6 +12,7 @@ export function middleware(request) {
 export const config = {
   matcher: [
     '/prescricao/:path*',
+    '/paciente/:path*',
     '/mais-uma-rota-protegida/:path*',
   ],
 };
